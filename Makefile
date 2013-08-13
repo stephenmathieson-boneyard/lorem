@@ -1,8 +1,7 @@
 
 PREFIX ?= /usr/local
 
-lorem:
-	gcc src/lorem.h src/lorem.c -o lorem
+lorem: src/*.h src/*.c
 
 install: lorem
 	cp -f lorem $(PREFIX)/bin/lorem
