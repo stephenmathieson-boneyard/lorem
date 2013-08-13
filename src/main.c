@@ -1,6 +1,6 @@
 
 //
-// lorem.h
+// main.c
 //
 // Copyright (c) 2013 Stephen Mathieson <me@stephenmathieson.com>
 //
