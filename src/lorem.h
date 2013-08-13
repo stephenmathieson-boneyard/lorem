@@ -5,6 +5,9 @@
 //
 
 
+#ifndef SRC_LOREM_H_
+#define SRC_LOREM_H_
+
 char *lorem_words[] = {
   "dolor", "sit", "amet", "consectetur", "adipisicing", "elit", "sed",
   "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore",
@@ -20,3 +23,5 @@ char *lorem_words[] = {
 int lorem_word_count = (sizeof(lorem_words) / sizeof(lorem_words[0]));
 
 char *lorem_word();
+
+#endif  // SRC_LOREM_H_
