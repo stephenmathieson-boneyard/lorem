@@ -5,8 +5,8 @@
 // Copyright (c) 2013 Stephen Mathieson <me@stephenmathieson.com>
 //
 
+#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 #include "lorem.h"
 
