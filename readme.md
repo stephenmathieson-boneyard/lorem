@@ -3,6 +3,20 @@
 
 Another Lorem ipsum generator, written in c
 
+## install
+
+   $ make && make install
+
+## usage
+
+    $ lorem
+
+prints "Lorem ipsum" with 100 random latin words
+
+    $ lorem 5000
+
+prints "Lorem ipsum" with 5000 random latin words
+
 ## License 
 
 (The MIT License)
