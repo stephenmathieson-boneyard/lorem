@@ -1,3 +1,4 @@
+
 //
 // lorem.h
 //
@@ -5,23 +6,20 @@
 //
 
 
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+#include <memory.h>
+
 #ifndef SRC_LOREM_H_
 #define SRC_LOREM_H_
 
-char *lorem_words[] = {
-  "dolor", "sit", "amet", "consectetur", "adipisicing", "elit", "sed",
-  "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore",
-  "magna", "aliqua", "Ut", "enim", "ad", "minim", "veniam", "quis",
-  "nostrud", "exercitation", "ullamco", "laboris", "nisi", "ut", "aliquip",
-  "ex", "ea", "commodo", "consequat", "Duis", "aute", "irure", "dolor",
-  "in", "reprehenderit", "in", "voluptate", "velit", "esse", "cillum",
-  "dolore", "eu", "fugiat", "nulla", "pariatur", "Excepteur", "sint",
-  "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui",
-  "officia", "deserunt", "mollit", "anim", "id", "est", "laborum"
-};
+#define LOREM_VERSION "0.0.1"
 
-int lorem_word_count = (sizeof(lorem_words) / sizeof(lorem_words[0]));
+#define LOREM_NUM_WORDS 67
 
-char *lorem_word();
+extern char *LOREM_WORDS[LOREM_NUM_WORDS];
+
+extern char *lorem_ipsum(size_t count);
 
 #endif  // SRC_LOREM_H_

@@ -5,64 +5,69 @@
 // Copyright (c) 2013 Stephen Mathieson <me@stephenmathieson.com>
 //
 
-#include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
+#include <memory.h>
 #include "lorem.h"
 
+
+char *LOREM_WORDS[LOREM_NUM_WORDS] = {
+  "dolor", "sit", "amet", "consectetur", "adipisicing", "elit", "sed",
+  "do", "eiusmod", "tempor", "incididunt", "ut", "labore", "et", "dolore",
+  "magna", "aliqua", "Ut", "enim", "ad", "minim", "veniam", "quis",
+  "nostrud", "exercitation", "ullamco", "laboris", "nisi", "ut", "aliquip",
+  "ex", "ea", "commodo", "consequat", "Duis", "aute", "irure", "dolor",
+  "in", "reprehenderit", "in", "voluptate", "velit", "esse", "cillum",
+  "dolore", "eu", "fugiat", "nulla", "pariatur", "Excepteur", "sint",
+  "occaecat", "cupidatat", "non", "proident", "sunt", "in", "culpa", "qui",
+  "officia", "deserunt", "mollit", "anim", "id", "est", "laboru"
+};
+
+
 /*
- * Get a random `lorem` word
+ * Get a random Latin word
  */
 
 char *lorem_word() {
-  return lorem_words[rand() % lorem_word_count];
+  return LOREM_WORDS[rand() % LOREM_NUM_WORDS];
 }
 
 /*
- * Fill `buf` with "Lorem ipsum" plus `count` words
+ * Return a character array of `count`
+ * words, prefixed with "Lorem ipsum".
  */
 
-void lorem_ipsum(char *buf, size_t count) {
-
-  srand(time(0));
-
-  // always start with Lorem ipsum
-  strcpy(buf, "Lorem ipsum");
+char *lorem_ipsum(size_t count) {
+  char *words[count];
+  // strlen("Lorem ipsum") + strlen(".")
+  int size = 11;
+  int position = 11;
 
   int i;
-  char *last = lorem_word();
-  for (i = 0; i < count; ++i) {
-    char *thing = lorem_word();
-
-    // don't put two of the same words next to each other
-    while (strcmp(last, thing) == 0) {
-      thing = lorem_word();
-    }
-
-    strcat(buf, " ");
-    strcat(buf, thing);
-    last = thing;
+  // build the array of words first
+  for (i = 0; i < count; i++) {
+    words[i] = lorem_word();
+    size += strlen(words[i]);
   }
 
-  strcat(buf, ".");
-}
+  // add a byte for null
+  size++;
 
-/*
- * Print "Lorem ipsum..." with the number of
- * given words.  Defaults to 100 words.
- */
+  char *res = malloc(sizeof(char) * size);
 
-int main(int argc, char *argv[]) {
-  int count = 100;
-
-  if (argc == 2) {
-    count = atoi(argv[1]);
+  strncpy(res, "Lorem ipsum", 11);
+  for (i = 0; i < count; i++) {
+    int len = strlen(words[i]);
+    // pass reference, so `strcat` doesn't have to search for null
+    strncat(&res[position], words[i], len);
+    // tracking position for a significant performance boost :)
+    position += len;
+    res[position] = ' ';
   }
 
-  char lorem[13 * count];
+  res[position - 2] = '.';
+  res[position - 1] = '\0';
 
-  lorem_ipsum(lorem, count);
-
-  printf("%s\n", lorem);
-  return 0;
+  return res;
 }
