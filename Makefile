@@ -13,4 +13,7 @@ uninstall:
 clean:
 	rm lorem
 
-.PHONY: clean install uninstall
+lint:
+	@cppcheck src/*
+
+.PHONY: clean install uninstall lint
