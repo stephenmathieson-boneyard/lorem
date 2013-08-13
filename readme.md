@@ -1,11 +1,10 @@
-
 # lorem
 
 Another Lorem ipsum generator, written in c
 
 ## install
 
-   $ make && make install
+    $ make && make install
 
 ## usage
 
