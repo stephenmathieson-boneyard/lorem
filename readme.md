@@ -1,7 +1,7 @@
 
 # lorem
 
-Another Lorem ipsum generator in c
+Another Lorem ipsum generator, written in c
 
 ## License 
 
